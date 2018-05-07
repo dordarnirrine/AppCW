@@ -7,7 +7,7 @@
     tools:context=".LoginActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/loginDescrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -29,7 +29,7 @@
         tools:layout_editor_absoluteY="48dp" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/usernameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -45,7 +45,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText2"
+        android:layout_above="@+id/passwordIInput"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-164dp"
         android:text="Password"
@@ -53,7 +53,7 @@
         tools:layout_editor_absoluteY="150dp" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/passwordIInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

@@ -3,9 +3,12 @@ package com.example.jordan.appcw;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
@@ -32,9 +35,21 @@ public class LoginActivity extends Activity {
         Intent gotoDashIntent = new Intent(this,
                 DashActivity.class);
 
+        EditText usernameInput = (EditText)findViewById(R.id.usernameInput);
+        EditText passwordInput = (EditText)findViewById(R.id.passwordIInput);
+        TextView loginDescrip = (TextView)findViewById(R.id.loginDescrip);
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
+
         //getNameScreenIntent.putExtra("weatherinfo", weatherInfo[i]);
 
-        startActivity(gotoDashIntent);
+        if(username.equals("j") && password.equals("i")){
+            startActivity(gotoDashIntent);
+        }
+        else {
+            loginDescrip.setText("Username or Password Incorrect");
+            loginDescrip.setTextColor(Color.RED);
+        }
     }
 
 
