@@ -34,22 +34,21 @@
         android:text="Search" />
 
     <Button
-        android:id="@+id/filterSearch"
+        android:id="@+id/SearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/spendingSearch"
         android:layout_marginEnd="40dp"
-        android:text="Filter Options" />
+        android:text="Search" />
 
     <TableLayout
         android:id="@+id/spendingTable"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="108dp"
-        android:layout_marginStart="31dp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -92,5 +91,37 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+
+    <RadioGroup
+        android:id="@+id/radioSearchGroup"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="129dp"
+        android:checkedButton="@+id/radioButton">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ID" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Amount" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Location" />
+
+    </RadioGroup>
 
 </RelativeLayout>
