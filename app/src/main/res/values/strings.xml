@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AppCW</string>
+    <string name="title_activity_analytics">AnalyticsActivity</string>
+    <string name="title_activity_upload">UploadActivity</string>
+    <string name="title_activity_spending">SpendingActivity</string>
+    <string name="title_activity_non_upload">NonUploadActivity</string>
+    <string name="title_activity_goals">GoalsActivity</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+</resources>

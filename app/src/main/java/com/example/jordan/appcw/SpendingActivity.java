@@ -1,5 +1,6 @@
 package com.example.jordan.appcw;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,11 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpendingActivity extends AppCompatActivity {
 
@@ -75,9 +80,11 @@ public class SpendingActivity extends AppCompatActivity {
 
         RadioGroup searchRadio = (RadioGroup)findViewById(R.id.radioSearchGroup);
         int radioID = searchRadio.getCheckedRadioButtonId();
+        View radioButton = searchRadio.findViewById(radioID);
+        int idx = searchRadio.indexOfChild(radioButton);
         Log.d("Debug","Search runs");
-        System.out.println(radioID);
-        switch(radioID){
+        System.out.println(idx);
+        switch(idx){
             case 0:
                 MatchAndPrint(ids,searchText);
                 Log.d("Debug","switchcase0 runs");
@@ -97,42 +104,43 @@ public class SpendingActivity extends AppCompatActivity {
     }
 
     public void MatchAndPrint(String[] searchedContent,String searchText){
-        int[] matching = new int[]{};
-        int positionHolder = 0;
+        List<Integer> matching = new ArrayList<>();
         Log.d("Debug","MatchAndPrint runs");
 
         for(int i=0; i<searchedContent.length;i++){
             if(searchedContent[i].contains(searchText)){
-                matching[positionHolder] = i;
-                positionHolder++;
+                matching.add(i);
 
             }
         }
 
-        TableLayout spendingTable = (TableLayout)findViewById(R.id.spendingTable);
+        TableLayout spendingTable = findViewById(R.id.spendingTable);
+        if(matching.size()!=0) {
+            for (int i = 0; i < ids.length; i++) {
+                for(int y = 0; y < matching.size();y++) {
+                    if (i == matching.get(y)) {
+                        TableRow row = new TableRow(this);
 
-        for(int i = 0; i<ids.length; i++){
-            if(i==matching[i]) {
-                TableRow row = new TableRow(this);
+                        TextView id = new TextView(this);
+                        id.setText(ids[i]);
 
-                TextView id = new TextView(this);
-                id.setText(ids[i]);
+                        TextView Amount = new TextView(this);
+                        Amount.setText(Amounts[i]);
 
-                TextView Amount = new TextView(this);
-                Amount.setText(Amounts[i]);
+                        TextView Location = new TextView(this);
+                        Location.setText(Locations[i]);
 
-                TextView Location = new TextView(this);
-                Location.setText(Locations[i]);
+                        TextView attached = new TextView(this);
+                        attached.setText(AttachedReceipt[i]);
 
-                TextView attached = new TextView(this);
-                attached.setText(AttachedReceipt[i]);
+                        row.addView(id);
+                        row.addView(Amount);
+                        row.addView(Location);
+                        row.addView(attached);
 
-                row.addView(id);
-                row.addView(Amount);
-                row.addView(Location);
-                row.addView(attached);
-
-                spendingTable.addView(row);
+                        spendingTable.addView(row);
+                    }
+                }
             }
         }
 
