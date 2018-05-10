@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -26,6 +27,8 @@ public class SpendingActivity extends AppCompatActivity {
     String[] Amounts = new String[]{"10.00", "2.50","3.70"};
     String[] Locations = new String[]{"LufbraSU","LondisCharnwood","Dominos"};
     String[] AttachedReceipt = new String[]{"Not attached", "Not attached", "Not attached"};
+
+    TableLayout spendingTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +107,9 @@ public class SpendingActivity extends AppCompatActivity {
     }
 
     public void MatchAndPrint(String[] searchedContent,String searchText){
+        TableLayout spendingTable = findViewById(R.id.spendingTable);
+        DeleteCurrent();
+
         List<Integer> matching = new ArrayList<>();
         Log.d("Debug","MatchAndPrint runs");
 
@@ -114,7 +120,6 @@ public class SpendingActivity extends AppCompatActivity {
             }
         }
 
-        TableLayout spendingTable = findViewById(R.id.spendingTable);
         if(matching.size()!=0) {
             for (int i = 0; i < ids.length; i++) {
                 for(int y = 0; y < matching.size();y++) {
@@ -144,6 +149,12 @@ public class SpendingActivity extends AppCompatActivity {
             }
         }
 
+
+    }
+
+    public void DeleteCurrent() {
+        TableLayout spendingTable = findViewById(R.id.spendingTable);
+        spendingTable.removeAllViews();
 
     }
 

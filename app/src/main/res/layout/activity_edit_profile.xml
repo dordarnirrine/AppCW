@@ -35,17 +35,6 @@
         android:text="Username" />
 
     <EditText
-        android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/usernameText"
-        android:layout_marginTop="165dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:text="Email" />
-
-    <EditText
         android:id="@+id/ageField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,5 +52,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="178dp"
         android:text="Done" />
+
+    <EditText
+        android:id="@+id/passwordedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/usernameText"
+        android:layout_marginTop="170dp"
+        android:ems="10"
+        android:inputType="textPassword" />
 
 </RelativeLayout>

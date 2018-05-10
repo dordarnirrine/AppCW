@@ -29,6 +29,8 @@ public class LoginActivity extends Activity {
 
         final SQLiteDatabase db = DBHelper.getReadableDatabase();
 
+        DBHelper.Testdata();
+
         //Listener for when the enter button on login page is clicked
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +77,11 @@ public class LoginActivity extends Activity {
             System.out.println(password);
 
             if (password.equals(dbpassword)) {
+                ((MyApplication) this.getApplication()).setUsername(username[0]);
                 startActivity(gotoDashIntent);
-            } else {
+            }
+
+            else {
                 loginDescrip.setText("Password Incorrect");
                 loginDescrip.setTextColor(Color.RED);
             }
