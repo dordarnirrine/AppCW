@@ -41,11 +41,11 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
         String username = new String("j");
         int[] ids = new int[]{1,2,3};
         int[] amount = new int[]{1000,2000,3000};
-        String[] location = new String[]{"Lufbra","EHB","Postoffice"};
+        String[] location = new String[]{"Lufbra" , "EHB" , "Postoffice"};
         String[] date = new String[]{"2018-05-07", "2018-05-08", "2018-05-09"};
         String[] category = new String[]{"General","General","General"};
 
-        for (int i = 0; i<amount.length;i++){
+        for (int i = 0; i<location.length; i++){
             ContentValues values2 = new ContentValues();
 
             values2.put("USERNAME", username);
@@ -54,6 +54,8 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
             values2.put("LOCATION", location[i]);
             values2.put("DATESUBMITTED", date[i]);
             values2.put("CATEGORY", category[i]);
+            System.out.println(location[i]);
+            System.out.println(i);
 
             long newRowId2 = myDB.insert("SPEND_TABLE", null, values2);
         }

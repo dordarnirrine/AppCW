@@ -48,7 +48,7 @@
         android:text="Location of Expenditure" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/LocationeditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -60,11 +60,11 @@
         android:text="Name" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/AmounteditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignStart="@+id/LocationeditText"
         android:layout_marginBottom="233dp"
         android:ems="10"
         android:inputType="number"
@@ -75,7 +75,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignStart="@+id/LocationeditText"
         android:layout_marginBottom="157dp" />
 
     <Button
@@ -95,5 +95,14 @@
         android:layout_alignStart="@+id/textview11"
         android:layout_marginTop="256dp"
         android:text="Amount Spent (£)" />
+
+    <TextView
+        android:id="@+id/NextexpendID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/expendID"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="60dp"
+        android:text="TextView" />
 
 </RelativeLayout>
