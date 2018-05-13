@@ -28,7 +28,7 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
         db.execSQL(query);
         query = "CREATE TABLE IF NOT EXISTS SPEND_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, LOCATION TEXT, RECEIPT TEXT, DATESUBMITTED TEXT NOT NULL, CATEGORY TEXT);";
         db.execSQL(query);
-        System.out.println("TESTING");
+        query = "CREATE TABLE IF NOT EXISTS GOAL_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, CATEGORY TEXT, PROGRESS INTEGER);";
         ContentValues values = new ContentValues();
         values.put("USERNAME", "j");
         values.put("PASSWORD", "i");
@@ -54,10 +54,24 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
             values2.put("LOCATION", location[i]);
             values2.put("DATESUBMITTED", date[i]);
             values2.put("CATEGORY", category[i]);
-            System.out.println(location[i]);
-            System.out.println(i);
 
             long newRowId2 = myDB.insert("SPEND_TABLE", null, values2);
+        }
+
+        ids = new int[]{1};
+        amount = new int[]{10000};
+        category = new String[]{"General"};
+
+        for (int i = 0; i<location.length; i++){
+            ContentValues values3 = new ContentValues();
+
+            values3.put("USERNAME", username);
+            values3.put("_ID", ids[i]);
+            values3.put("AMOUNT", amount[i]);
+            values3.put("CATEGORY", category[i]);
+            values3.put("PROGRESS", 0);
+
+            long newRowId2 = myDB.insert("GOAL_TABLE", null, values3);
         }
     }
 
@@ -72,11 +86,11 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
         myDB.execSQL("DELETE FROM "+ table_name);
     }
 
-    public void Testdata(){
+    /*public void Testdata(){
         String username = new String("j");
         int[] ids = new int[]{1,2,3};
         int[] amount = new int[]{1000,2000,3000};
-        String[] location = new String[]{"Lufbra","EHB","Postoffice"};
+        String[] location = new String[]{"Lufbra", "EHB", "Postoffice"};
         String[] date = new String[]{"2018-05-07", "2018-05-08", "2018-05-09"};
         String[] category = new String[]{"General","General","General"};
 
@@ -100,5 +114,5 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
             );
         }
 
-    }
+    }*/
 }

@@ -68,21 +68,24 @@ public class SpendingActivity extends AppCompatActivity {
                 null, // columns to filter by row groups
                 null // sort order
         );
+        if(cursor != null) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount();i++){
+                int passIndex = cursor.getColumnIndex(columns[0]);
+                String id = String.valueOf(cursor.getInt(passIndex));
+                passIndex = cursor.getColumnIndex(columns[1]);
+                String amount = cursor.getString(passIndex);
+                passIndex = cursor.getColumnIndex(columns[2]);
+                String location = cursor.getString(passIndex);
 
-        while(cursor.moveToNext()){
-            int passIndex = cursor.getColumnIndex(columns[0]);
-            String id = String.valueOf(cursor.getInt(passIndex));
-            passIndex = cursor.getColumnIndex(columns[1]);
-            String amount = cursor.getString(passIndex);
-            passIndex = cursor.getColumnIndex(columns[2]);
-            String location = cursor.getString(passIndex);
-
-            System.out.println(location);
-            ids.add(id);
-            Amounts.add(amount);
-            Locations.add(location);
+                System.out.println(location);
+                ids.add(id);
+                Amounts.add(amount);
+                Locations.add(location);
+                cursor.moveToNext();
+            }
+            cursor.close();
         }
-        cursor.close();
 
         TableLayout spendingTable = (TableLayout)findViewById(R.id.spendingTable);
 
@@ -170,7 +173,7 @@ public class SpendingActivity extends AppCompatActivity {
                         Location.setText(Locations.get(i));
 
                         TextView attached = new TextView(this);
-                        attached.setText("NotSet");
+                        attached.setText("NOTSET");
 
                         row.addView(id);
                         row.addView(Amount);
@@ -189,6 +192,27 @@ public class SpendingActivity extends AppCompatActivity {
     public void DeleteCurrent() {
         TableLayout spendingTable = findViewById(R.id.spendingTable);
         spendingTable.removeAllViews();
+
+        TableRow row = new TableRow(this);
+
+        TextView id = new TextView(this);
+        id.setText("ID");
+
+        TextView Amount = new TextView(this);
+        Amount.setText("Amount(£)");
+
+        TextView Location = new TextView(this);
+        Location.setText("Location");
+
+        TextView attached = new TextView(this);
+        attached.setText("Attached Recepit");
+
+        row.addView(id);
+        row.addView(Amount);
+        row.addView(Location);
+        row.addView(attached);
+
+        spendingTable.addView(row);
 
     }
 

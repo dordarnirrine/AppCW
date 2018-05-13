@@ -15,8 +15,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class NonUploadActivity extends AppCompatActivity {
 
@@ -102,23 +105,21 @@ public class NonUploadActivity extends AppCompatActivity {
         Intent doneGoHome = new Intent(this,
                 DashActivity.class);
         DBHelper = new SpendingDBHelper(getApplicationContext(),SpendingDBHelper.DB_NAME,null,SpendingDBHelper.DB_VERSION);
+
         db = DBHelper.getWritableDatabase();
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String username = new String(((MyApplication) this.getApplication()).getUsername());
 
         ContentValues values = new ContentValues();
         values.put("_ID",maxval);
         values.put("AMOUNT",amountEntered.getText().toString());
         values.put("CATEGORY", categorydropdown.getSelectedItem().toString());
         values.put("LOCATION", LocationEntered.getText().toString());
+        values.put("USERNAME", username);
+        values.put("DATESUBMITTED", date);
 
-        String selection = "_ID=?";
-        String[] selectionArgs = {  };
-
-        db.update(
-                "SPEND_TABLE",
-                values,
-                selection,
-                selectionArgs);
-
+        long newRowId = db.insert("SPEND_TABLE", null, values);
 
         startActivity(doneGoHome);
     }

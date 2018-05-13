@@ -29,7 +29,7 @@ public class LoginActivity extends Activity {
 
         final SQLiteDatabase db = DBHelper.getReadableDatabase();
 
-        DBHelper.Testdata();
+        //DBHelper.Testdata();
 
         //Listener for when the enter button on login page is clicked
         enterButton.setOnClickListener(new View.OnClickListener() {
