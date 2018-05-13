@@ -76,7 +76,7 @@ public class SpendingActivity extends AppCompatActivity {
             String amount = cursor.getString(passIndex);
             passIndex = cursor.getColumnIndex(columns[2]);
             String location = cursor.getString(passIndex);
-            
+
             System.out.println(location);
             ids.add(id);
             Amounts.add(amount);
