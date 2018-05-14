@@ -32,4 +32,11 @@
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="136dp" />
 </RelativeLayout>

@@ -73,6 +73,7 @@ public class EditProfileActivity extends AppCompatActivity {
         else{
             AgeEdit.setText("NOT SET.");
         }
+        cursor.close();
     }
 
     public void done(){

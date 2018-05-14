@@ -24,11 +24,17 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         myDB = db;
+
         String query = "CREATE TABLE IF NOT EXISTS USERS_TABLE ( PASSWORD TEXT NOT NULL, USERNAME TEXT PRIMARY KEY, AGE INTEGER, DATEJOINED);";
         db.execSQL(query);
+
         query = "CREATE TABLE IF NOT EXISTS SPEND_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, LOCATION TEXT, RECEIPT TEXT, DATESUBMITTED TEXT NOT NULL, CATEGORY TEXT);";
         db.execSQL(query);
-        query = "CREATE TABLE IF NOT EXISTS GOAL_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, CATEGORY TEXT, PROGRESS INTEGER);";
+
+        query = "CREATE TABLE IF NOT EXISTS GOAL_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, CATEGORY TEXT, PROGRESS INTEGER, AVERAGEMONTHLY INTEGER, DATECREATED TEXT);";
+        db.execSQL(query);
+
+
         ContentValues values = new ContentValues();
         values.put("USERNAME", "j");
         values.put("PASSWORD", "i");
@@ -62,7 +68,7 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
         amount = new int[]{10000};
         category = new String[]{"General"};
 
-        for (int i = 0; i<location.length; i++){
+        for (int i = 0; i<ids.length; i++){
             ContentValues values3 = new ContentValues();
 
             values3.put("USERNAME", username);
@@ -70,6 +76,7 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
             values3.put("AMOUNT", amount[i]);
             values3.put("CATEGORY", category[i]);
             values3.put("PROGRESS", 0);
+            values3.put("AVERAGEMONTHLY", 123);
 
             long newRowId2 = myDB.insert("GOAL_TABLE", null, values3);
         }

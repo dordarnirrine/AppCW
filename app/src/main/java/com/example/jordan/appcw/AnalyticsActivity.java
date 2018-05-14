@@ -10,7 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 public class AnalyticsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    GraphView graph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,27 @@ public class AnalyticsActivity extends AppCompatActivity implements AdapterView.
 
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
+        graph = findViewById(R.id.graph);
+        switch (pos){
+            case 0:
+
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                        new DataPoint(2018-05-7, 1),
+                        new DataPoint(2018-05-8, 5),
+                        new DataPoint(2018-05-9, 3)
+                });
+                graph.addSeries(series);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                    break;
+
+        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
