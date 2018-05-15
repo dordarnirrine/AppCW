@@ -10,12 +10,32 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Locale;
+
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class AnalyticsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    GraphView graph;
+public class AnalyticsActivity extends AppCompatActivity {
+
+
+    private SpendingDBHelper DBHelper;
+    private android.database.sqlite.SQLiteDatabase db;
+
+    List<Integer> ids = new ArrayList<>();
+    List<String> Amounts = new ArrayList<>();
+    List<String> Categories = new ArrayList<>();
+    List<Date> DateSubmitted = new ArrayList<>();
+    Date userJoined;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,46 +47,107 @@ public class AnalyticsActivity extends AppCompatActivity implements AdapterView.
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //get the spinner from the xml.
-        Spinner dropdown = findViewById(R.id.spinner1);
-        //create a list of items for the spinner.
-        String[] items = new String[]{"1", "2", "three"};
-        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
-        //There are multiple variations of this, but this is the basic variant.
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        //set the spinners adapter to the previously created one.
-        dropdown.setAdapter(adapter);
 
-        dropdown.setOnItemSelectedListener(this);
-    }
+        DBHelper = new SpendingDBHelper(getApplicationContext(),SpendingDBHelper.DB_NAME,null,SpendingDBHelper.DB_VERSION);
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        graph = findViewById(R.id.graph);
-        switch (pos){
-            case 0:
+        final android.database.sqlite.SQLiteDatabase db = DBHelper.getReadableDatabase();
 
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                        new DataPoint(2018-05-7, 1),
-                        new DataPoint(2018-05-8, 5),
-                        new DataPoint(2018-05-9, 3)
-                });
-                graph.addSeries(series);
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                    break;
+        String[] columns = new String[]{"_ID","AMOUNT","CATEGORY","DATESUBMITTED"};
+        String columnsWhere = new String("USERNAME=?");
+        String[] username = new String[]{((MyApplication) this.getApplication()).getUsername()};
 
+        android.database.Cursor cursor = db.query(
+                "SPEND_TABLE", // Table to Query
+                columns,
+                columnsWhere, // Columns for the "where" clause
+                username, // Values for the "where" clause
+                null, // columns to group by
+                null, // columns to filter by row groups
+                null // sort order
+        );
+
+        if(cursor != null) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                int passIndex = cursor.getColumnIndex(columns[0]);
+                String id = String.valueOf(cursor.getInt(passIndex));
+                passIndex = cursor.getColumnIndex(columns[1]);
+                String amount = cursor.getString(passIndex);
+                passIndex = cursor.getColumnIndex(columns[2]);
+                String category = cursor.getString(passIndex);
+                passIndex = cursor.getColumnIndex(columns[3]);
+                String datesubmitted = cursor.getString(passIndex);
+                Date date = null;
+                try {
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(datesubmitted);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                ids.add(Integer.parseInt(id));
+                Amounts.add(amount);
+                Categories.add(category);
+                DateSubmitted.add(date);
+                cursor.moveToNext();
+
+            }
+            cursor.close();
         }
-    }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
+        columns = new String[]{"DATEJOINED"};
+        columnsWhere = new String("USERNAME=?");
+
+        android.database.Cursor cursor2 = db.query(
+                    "USERS_TABLE", // Table to Query
+                    columns,
+                    columnsWhere, // Columns for the "where" clause
+                    username, // Values for the "where" clause
+                    null, // columns to group by
+                    null, // columns to filter by row groups
+                    null // sort order
+        );
+
+        if(cursor2 != null) {
+            cursor2.moveToFirst();
+            for (int i = 0; i < cursor2.getCount(); i++) {
+                int passIndex = cursor2.getColumnIndex(columns[0]);
+                String date = cursor2.getString(passIndex);
+                try {
+                    userJoined = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    System.out.println(date);
+                }
+
+                cursor2.moveToNext();
+            }
+            cursor2.close();
+        }
+        GraphView graph = (GraphView)findViewById(R.id.graph);
+
+        DataPoint[] dataPoints = new DataPoint[ids.size()];
+        for(int i = 0; i<ids.size();i++) {
+            dataPoints[i] = new DataPoint(DateSubmitted.get(i),Integer.valueOf(Amounts.get(i)));
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+
+        graph.addSeries(series);
+
+        // set date label formatter
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+
+        // set manual x bounds to have nice steps
+        graph.getViewport().setMinX(userJoined.getTime());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        graph.getViewport().setMaxX(date.getTime());
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+
+        // as we use dates as labels, the human rounding to nice readable numbers
+        // is not necessary
+        graph.getGridLabelRenderer().setHumanRounding(false);
+
     }
 
 }
