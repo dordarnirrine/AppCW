@@ -30,4 +30,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="78dp" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="87dp"
+        android:text="Timeline of spending since joining" />
+
 </RelativeLayout>

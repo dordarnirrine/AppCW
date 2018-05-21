@@ -18,14 +18,14 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
 
     public SpendingDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-        myDB = getWritableDatabase();
+        myDB = getWritableDatabase();//Used to write to the database the first time this class is accessed
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         myDB = db;
-
-        String query = "CREATE TABLE IF NOT EXISTS USERS_TABLE ( PASSWORD TEXT NOT NULL, USERNAME TEXT PRIMARY KEY, AGE INTEGER, DATEJOINED);";
+        //Initialses the three tables used in the database
+        String query = "CREATE TABLE IF NOT EXISTS USERS_TABLE ( PASSWORD TEXT NOT NULL, USERNAME TEXT PRIMARY KEY, AGE INTEGER, DATEJOINED TEXT);";
         db.execSQL(query);
 
         query = "CREATE TABLE IF NOT EXISTS SPEND_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, LOCATION TEXT, RECEIPT TEXT, DATESUBMITTED TEXT NOT NULL, CATEGORY TEXT);";
@@ -34,7 +34,7 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
         query = "CREATE TABLE IF NOT EXISTS GOAL_TABLE ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, USERNAME TEXT NOT NULL, AMOUNT INTEGER NOT NULL, CATEGORY TEXT, PROGRESS INTEGER, AVERAGEMONTHLY INTEGER, DATECREATED TEXT);";
         db.execSQL(query);
 
-
+        //Everything below here is test data being entered into the database
         ContentValues values = new ContentValues();
         values.put("USERNAME", "j");
         values.put("PASSWORD", "i");
@@ -93,33 +93,5 @@ public class SpendingDBHelper extends SQLiteOpenHelper {
         myDB.execSQL("DELETE FROM "+ table_name);
     }
 
-    /*public void Testdata(){
-        String username = new String("j");
-        int[] ids = new int[]{1,2,3};
-        int[] amount = new int[]{1000,2000,3000};
-        String[] location = new String[]{"Lufbra", "EHB", "Postoffice"};
-        String[] date = new String[]{"2018-05-07", "2018-05-08", "2018-05-09"};
-        String[] category = new String[]{"General","General","General"};
 
-        for (int i = 0; i<amount.length;i++){
-            ContentValues values = new ContentValues();
-
-            values.put("USERNAME", username);
-            values.put("AMOUNT", amount[i]);
-            values.put("LOCATION", location[i]);
-            values.put("DATESUBMITTED", date[i]);
-            values.put("CATEGORY", category[i]);
-
-            String selection = "USERNAME LIKE ?";
-            String[] selectionArgs = { username };
-
-            myDB.update(
-                    "SPEND_TABLE",
-                    values,
-                    selection,
-                    selectionArgs
-            );
-        }
-
-    }*/
 }

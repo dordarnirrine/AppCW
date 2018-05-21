@@ -7,13 +7,12 @@
     tools:context=".DashActivity">
 
     <Button
-        android:id="@+id/internetbutton2"
+        android:id="@+id/userguide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/spendingButton"
-        android:layout_alignEnd="@+id/logOutButton"
-        android:layout_marginBottom="-156dp"
-        android:text="Budget advice" />
+        android:layout_toEndOf="@+id/textView4"
+        android:text="User Guide" />
 
     <TextView
         android:id="@+id/textView4"
@@ -37,26 +36,26 @@
         android:id="@+id/editProfileButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:layout_toStartOf="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView18"
+        android:layout_marginStart="171dp"
+        android:layout_marginTop="-87dp"
         android:text="Edit Profile" />
 
     <Button
         android:id="@+id/logOutButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editProfileButton"
-        android:layout_toEndOf="@+id/textView4"
+        android:layout_alignStart="@+id/editProfileButton"
+        android:layout_alignTop="@+id/userguide"
         android:text="Log Out" />
 
     <ImageButton
         android:id="@+id/spendingButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="156dp"
-        android:layout_toEndOf="@+id/textView4"
+        android:layout_alignStart="@+id/goalsButton"
+        android:layout_alignTop="@+id/analyticsButton"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/icon" />
@@ -66,8 +65,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="115dp"
-        android:layout_toStartOf="@+id/textView4"
+        android:layout_alignStart="@+id/nonUploadButton"
+        android:layout_marginBottom="43dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/graphs_clip_art_hight" />
@@ -76,8 +75,9 @@
         android:id="@+id/nonUploadButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignTop="@+id/spendingButton"
-        android:layout_toStartOf="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_marginStart="18dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:srcCompat="@android:drawable/ic_menu_upload" />
@@ -86,8 +86,9 @@
         android:id="@+id/goalsButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignTop="@+id/analyticsButton"
-        android:layout_toEndOf="@+id/textView4"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_marginEnd="20dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         app:srcCompat="@android:drawable/ic_menu_edit" />
@@ -96,43 +97,43 @@
         android:id="@+id/textView16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/editProfileButton"
-        android:layout_marginBottom="228dp"
+        android:layout_above="@+id/textView5"
+        android:layout_alignStart="@+id/analyticsButton"
+        android:layout_marginBottom="-52dp"
         android:text="Upload spending" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/logOutButton"
-        android:layout_alignTop="@+id/textView16"
+        android:layout_alignStart="@+id/spendingButton"
+        android:layout_below="@+id/spendingButton"
         android:text="Search spending" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView16"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="87dp"
+        android:layout_alignStart="@+id/analyticsButton"
+        android:layout_below="@+id/spendingButton"
         android:text="Spending analytics" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView18"
-        android:layout_toEndOf="@+id/textView5"
+        android:layout_above="@+id/textView5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-52dp"
+        android:layout_marginEnd="34dp"
         android:text="Enter Goals" />
 
     <Button
-        android:id="@+id/userguide"
+        android:id="@+id/internetbutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/spendingButton"
-        android:layout_alignStart="@+id/editProfileButton"
-        android:layout_marginBottom="-156dp"
-        android:text="User Guide" />
+        android:layout_alignBottom="@+id/editProfileButton"
+        android:layout_alignEnd="@+id/userguide"
+        android:text="Budget advice" />
 
 </RelativeLayout>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jordan.appcw">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:allowBackup="true"
         android:name=".MyApplication"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -34,15 +35,6 @@
                 android:value="com.example.jordan.appcw.DashActivity" />
         </activity>
         <activity
-            android:name=".UploadActivity"
-            android:label="@string/title_activity_upload"
-            android:parentActivityName=".DashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jordan.appcw.DashActivity" />
-        </activity>
-        <activity
             android:name=".SpendingActivity"
             android:label="@string/title_activity_spending"
             android:parentActivityName=".DashActivity"
@@ -52,7 +44,7 @@
                 android:value="com.example.jordan.appcw.DashActivity" />
         </activity>
         <activity
-            android:name=".NonUploadActivity"
+            android:name=".UploadActivity"
             android:label="@string/title_activity_non_upload"
             android:parentActivityName=".DashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -78,6 +70,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.jordan.appcw.DashActivity" />
         </activity>
+        <activity
+            android:name=".SignUp"
+            android:label="@string/title_activity_sign_up"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.jordan.appcw.LoginActivity" />
+        </activity>
+        <activity android:name=".MyWebView"></activity>
     </application>
 
 </manifest>

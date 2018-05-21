@@ -38,8 +38,9 @@
         android:id="@+id/ageField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/usernameText1"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="52dp"
         android:ems="10"
         android:inputType="number"
         android:text="Age" />
@@ -48,9 +49,9 @@
         android:id="@+id/doneButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="178dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="105dp"
         android:text="Done" />
 
     <EditText

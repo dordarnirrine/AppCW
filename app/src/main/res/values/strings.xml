@@ -6,4 +6,5 @@
     <string name="title_activity_non_upload">NonUploadActivity</string>
     <string name="title_activity_goals">GoalsActivity</string>
     <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <string name="title_activity_sign_up">SignUp</string>
 </resources>

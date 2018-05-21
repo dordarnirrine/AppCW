@@ -21,9 +21,9 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/loginDescrip"
+        android:layout_marginStart="29dp"
         android:text="Username"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="48dp" />
@@ -33,32 +33,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="70dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Username"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="79dp" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/passwordIInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-164dp"
-        android:text="Password"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="150dp" />
-
     <EditText
         android:id="@+id/passwordIInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="164dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginBottom="65dp"
         android:ems="10"
         android:inputType="textPassword"
         tools:layout_editor_absoluteX="85dp"
@@ -68,9 +57,9 @@
         android:id="@+id/enterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="217dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_marginEnd="88dp"
         android:text="Enter"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="245dp" />
@@ -79,8 +68,18 @@
         android:id="@+id/signupbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="98dp"
+        android:layout_alignBottom="@+id/passwordIInput"
+        android:layout_alignStart="@+id/enterButton"
         android:text="Sign Up" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginBottom="129dp"
+        android:text="Password"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="150dp" />
 </RelativeLayout>

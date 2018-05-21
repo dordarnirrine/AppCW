@@ -20,31 +20,20 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="71dp"
-        android:text="Monthly Spending Target" />
-
     <Button
         android:id="@+id/ConfirmButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/generalTarget"
-        android:layout_toEndOf="@+id/MonthlySpendinginCategory"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_centerVertical="true"
         android:text="Submit Goal" />
 
     <EditText
         android:id="@+id/generalTarget"
         android:layout_width="159dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="99dp"
+        android:layout_alignStart="@+id/ConfirmButton1"
+        android:layout_alignTop="@+id/categoryTarget"
         android:ems="10"
         android:inputType="number"
         android:text="0" />
@@ -54,17 +43,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="160dp"
+        android:layout_alignStart="@+id/categoryTarget"
+        android:layout_marginTop="66dp"
         android:text="Monthly Spending target in category" />
 
     <EditText
         android:id="@+id/categoryTarget"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="201dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginTop="94dp"
         android:ems="10"
         android:inputType="number"
         android:text="0" />
@@ -73,14 +63,14 @@
         android:id="@+id/categorySelect"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ConfirmButton1"
-        android:layout_alignTop="@+id/categoryTarget" />
+        android:layout_alignBottom="@+id/categoryTarget"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/ConfirmButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ConfirmButton1"
+        android:layout_alignStart="@+id/categoryTarget"
         android:layout_centerVertical="true"
         android:text="Submit Goal" />
 
@@ -88,9 +78,8 @@
         android:id="@+id/goalTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="230dp">
+        android:layout_below="@+id/ConfirmButton2"
+        android:layout_centerHorizontal="true">
 
         <TableRow
             android:layout_width="match_parent"
@@ -111,6 +100,14 @@
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/MonthlySpendinginCategory"
+        android:text="Monthly Spending Target" />
 
 
 </RelativeLayout>

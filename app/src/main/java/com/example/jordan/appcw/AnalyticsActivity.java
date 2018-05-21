@@ -24,17 +24,18 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class AnalyticsActivity extends AppCompatActivity {
+public class AnalyticsActivity extends AppCompatActivity {//this activity shows the users spending on a graph
 
 
     private SpendingDBHelper DBHelper;
-    private android.database.sqlite.SQLiteDatabase db;
+    private android.database.sqlite.SQLiteDatabase db;//database accessed to retrieve information for the graph
 
+    //Data retrieved from the database is stored in these lists for manipulation later
     List<Integer> ids = new ArrayList<>();
     List<String> Amounts = new ArrayList<>();
     List<String> Categories = new ArrayList<>();
     List<Date> DateSubmitted = new ArrayList<>();
-    Date userJoined;
+    Date userJoined;//Used later for the farthest left label on the x axis
 
 
     @Override
@@ -46,11 +47,12 @@ public class AnalyticsActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("General Analytics");//Sets the title for the page
 
 
         DBHelper = new SpendingDBHelper(getApplicationContext(),SpendingDBHelper.DB_NAME,null,SpendingDBHelper.DB_VERSION);
 
-        final android.database.sqlite.SQLiteDatabase db = DBHelper.getReadableDatabase();
+        final android.database.sqlite.SQLiteDatabase db = DBHelper.getReadableDatabase();//Gets the database used to read the data for the graph
 
         String[] columns = new String[]{"_ID","AMOUNT","CATEGORY","DATESUBMITTED"};
         String columnsWhere = new String("USERNAME=?");
@@ -68,7 +70,8 @@ public class AnalyticsActivity extends AppCompatActivity {
 
         if(cursor != null) {
             cursor.moveToFirst();
-            for (int i = 0; i < cursor.getCount(); i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {//Saves the data from the database to the lists used to manipulate the data
+
                 int passIndex = cursor.getColumnIndex(columns[0]);
                 String id = String.valueOf(cursor.getInt(passIndex));
                 passIndex = cursor.getColumnIndex(columns[1]);
@@ -78,16 +81,18 @@ public class AnalyticsActivity extends AppCompatActivity {
                 passIndex = cursor.getColumnIndex(columns[3]);
                 String datesubmitted = cursor.getString(passIndex);
                 Date date = null;
-                try {
+
+                try {//turns the date in the database into date format because sqlite doesn't support date format
                     date = new SimpleDateFormat("yyyy-MM-dd").parse(datesubmitted);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+
                 ids.add(Integer.parseInt(id));
                 Amounts.add(amount);
                 Categories.add(category);
                 DateSubmitted.add(date);
-                cursor.moveToNext();
+                cursor.moveToNext();//cursor moves onto next item
 
             }
             cursor.close();
@@ -106,6 +111,7 @@ public class AnalyticsActivity extends AppCompatActivity {
                     null // sort order
         );
 
+        //Gets the date that the user joined for the farthest left label
         if(cursor2 != null) {
             cursor2.moveToFirst();
             for (int i = 0; i < cursor2.getCount(); i++) {
@@ -122,13 +128,13 @@ public class AnalyticsActivity extends AppCompatActivity {
             }
             cursor2.close();
         }
-        GraphView graph = (GraphView)findViewById(R.id.graph);
+        GraphView graph = (GraphView)findViewById(R.id.graph);//sets up the graph view
 
         DataPoint[] dataPoints = new DataPoint[ids.size()];
         for(int i = 0; i<ids.size();i++) {
-            dataPoints[i] = new DataPoint(DateSubmitted.get(i),Integer.valueOf(Amounts.get(i)));
+            dataPoints[i] = new DataPoint(DateSubmitted.get(i),Integer.valueOf(Amounts.get(i)));//These are all the data points added to the graph
         }
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);//adds datapoints to the graph
 
         graph.addSeries(series);
 
